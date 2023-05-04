@@ -11,15 +11,16 @@ Rasters were generated using zero-nugget ordinary kriging, calcium data (but not
 The full calcium and pH databases cannot be shared, since these include data from individuals / organisations who did not explicitly agree to open sharing of their data.
 
 Raster file names provide detail on data and interpolations used to generate the layers. 
-Format: variable-interpolation method-number of data points used-measure interpolated-resolution-data transform-nugget settings
+Format: variable-interpolation method-number of data points used-measure interpolated-resolution-data transform-nugget settings.
+
 eg. calcium-KR-97648-median-10km-LGT-ZN means
-    calcium = calcium concentration (mg/l)
-    KR = kriging
-    97648 = data from 97648 sites used
-    median = median value for each site used
-    10km = 10 x 10km resolution
-    LGT = log-transformed data used during interpolation (UT = untransformed data)
-    ZN = nugget fixed at zero (if ZN not included in file name, nugget was not constrained during variogram fitting, and was selected automatically)
+- calcium = calcium concentration (mg/l)
+- KR = kriging
+- 97648 = data from 97648 sites used
+- median = median value for each site used
+- 10km = 10 x 10km resolution
+- LGT = log-transformed data used during interpolation (UT = untransformed data)
+- ZN = nugget fixed at zero (if ZN not included in file name, nugget was not constrained during variogram fitting, and was selected automatically)
 
 Contents:
 
