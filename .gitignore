@@ -1,0 +1,17 @@
+*.Rproj.user
+*.Rproj
+*.Rhistory
+*.RData
+*.Ruserdata
+
+#list of filetypes / files to ignore, as user can build these using included data and scripts
+*.png
+
+calcium-KR-97648-median_10km_LT_ZN_masked.tif
+calcium-KR-97648-median_10km_LT_ZN_variance_masked.tif
+
+ph-KR-208784-median_10km_UT_ZN_masked.tif
+ph-KR-208784-median_10km_UT_ZN_variance_masked.tif
+
+calcium-KR-97648-median-10km-LGT-ZN_latlong.tif
+ph-KR-208784-median_10km_UT_ZN_latlong.tif

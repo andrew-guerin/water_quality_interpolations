@@ -1,0 +1,115 @@
+
+#run the raster_masking script first to get data just for the land area.
+
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+library(gstat)
+library(raster) #note  - masks dplyr::select
+library(ggthemes)
+
+if(!file.exists("figures")){
+  dir.create("figures")
+}
+
+#coordinate reference systems 
+crs1 <- 4326 
+crs2 <- "ESRI:102008"
+
+#country outlines
+us <- ne_countries(country = "united states of america", scale = "large", returnclass = "sf" ) %>% st_transform(crs = crs2) 
+can <- ne_countries(country = "canada", scale = "large", returnclass = "sf" ) %>% st_transform(crs = crs2)
+n.amer <- rbind(us, can)
+
+# load rasters
+calc_raster <- raster("rasters/masked/calcium-KR-97648-median_10km_LT_ZN_masked.tif")
+ph_raster <- raster("rasters/masked/ph-KR-208784-median_10km_UT_ZN_masked.tif")
+
+#prepare plotting data
+
+calc_plotdata <- calc_raster %>% 
+  rasterToPoints() %>% 
+  as.data.frame() %>%
+  rename(layer="calcium.KR.97648.median_10km_LT_ZN_masked") %>%
+  mutate(grades = cut(layer,c(0,5.4999,10.4999,15.4999,20.4999,25.4999,30.4999,501),
+                       labels=c("0 - 5","6 - 10","11 - 15","16 - 20","21 - 25","26 - 30","> 30"))) 
+  
+ph_plotdata <- ph_raster %>% 
+  rasterToPoints() %>% 
+  as.data.frame() %>%
+  rename(layer="ph.KR.208784.median_10km_UT_ZN_masked") %>%
+  mutate(phcat = cut(layer, c(0,5.5,6,6.5,7,7.5,8,8.5,13), 
+                      labels = c("<5.5","5-5.5","5.5-6","6.5-7.","7-7.5","7.5-8","8-8.5",">8.5"))) 
+
+
+#calcium plot
+
+plot_calc <- 
+  ggplot() +
+  geom_tile(data=calc_plotdata,aes(x=x,y=y,fill=grades,colour=grades)) +
+  scale_fill_manual("Calcium, mg/l", values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027")) +
+  scale_colour_manual("Calcium, mg/l", values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027")) +
+  geom_sf(data=n.amer, fill=NA) +
+  coord_sf(xlim = c(-4755010, 2995610), ylim = c(-1689950, 4514250), expand = FALSE) +
+  theme_map() +
+  theme(legend.title = element_text(size=18),
+        legend.text = element_text(size=16))
+
+ggsave(
+  filename = "figures/calcium_map.png",
+  plot = plot_calc,
+  device = "png",
+  path = NULL,
+  scale = 0.5,
+  width = 40,
+  height = 30,
+  units = "cm",
+  dpi = 600,
+  limitsize = TRUE,
+  bg = "white") 
+
+
+#pH plot 
+
+plot_ph <- 
+  ggplot() +
+  geom_tile(data=ph_plotdata, aes(x=x,y=y,fill=phcat,colour=phcat)) +
+  scale_fill_manual("pH", 
+                    values=c("#0D0887FF",
+                             "#5402A3FF",
+                             "#8B0AA5FF",
+                             "#B93289FF",
+                             "#DB5C68FF",
+                             "#F48849FF",
+                             "#FEBC2AFF",
+                             "#F0F921FF")) +
+  scale_colour_manual("pH", 
+                      values=c("#0D0887FF",
+                               "#5402A3FF",
+                               "#8B0AA5FF",
+                               "#B93289FF",
+                               "#DB5C68FF",
+                               "#F48849FF",
+                               "#FEBC2AFF",
+                               "#F0F921FF")) +
+  geom_sf(data=n.amer, fill=NA) +
+  coord_sf(xlim = c(-4755010, 2995610), ylim = c(-1689950, 4514250), expand = FALSE) +
+  theme_map() +
+  theme(legend.title = element_text(size=18),
+        legend.text = element_text(size=16)) 
+
+
+ggsave(
+  filename = "figures/ph_map.png",
+  plot = plot_ph,
+  device = "png",
+  path = NULL,
+  scale = 0.5,
+  width = 40,
+  height = 30,
+  units = "cm",
+  dpi = 600,
+  limitsize = TRUE,
+  bg = "white") 
+
+
