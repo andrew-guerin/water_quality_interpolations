@@ -31,7 +31,7 @@ Data
 
 Code
 - scripts used to generate the calcium and pH interpolations from the corresponding data. 
-WARNING: the above scripts were written for the full databases, which are not provided, and would need to be modified to run on the restricted databases 
+WARNING: the above scripts were written for the full databases, which are not provided, and would need to be modified to run on other datasets 
 - scripts to mask the raw rasters using country outlines from the rnaturalearth package
 - scripts to reproject the rasters into latitude and longitude, followed by masking with country outlines
 - scripts to generate map visualisations of the interpolated layers
