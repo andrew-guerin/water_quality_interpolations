@@ -1,6 +1,7 @@
 # this script runs the interpolation for calcium concentrations
 # it is the 'single thread' version of the process. Considerable speed gains are possible using multi-thread version (provided at the end, as hashed out code)
 # this is for the 'best' interpolation, using zero-nugget interpolation based on log-transformed data
+# this code is also written for the full calcium database, which contains records which are not shareable. Will need to be adjusted for reduced dataset 
 
 library(tidyverse)
 library(sf)
@@ -23,7 +24,6 @@ crs2 <- "ESRI:102008"
 
 #import calcium data, log-transform median value, convert to spatial data and project to North America Albers Equal Area Conic
 calcium.sites <- read.csv("data/interpolation_data_calcium_97648.csv") %>%
-  mutate(MDLG = log1p(MEDIAN)) %>%
   st_as_sf(coords = c("LONGITUDE", "LATITUDE"), crs = crs1, agr = "constant")  %>%
   st_transform(crs = crs2) 
 
@@ -45,7 +45,7 @@ st_crs(calcium.sites)
 st_crs(grid10km)
 
 #fit kriging variogram - with fixed zero nugget
-varKRca <- autofitVariogram(MDLG ~ 1, 
+varKRca <- autofitVariogram(MEDIAN ~ 1, 
                             as(calcium.sites, "Spatial"),
                             verbose=TRUE,
                             fix.values = c(0,NA,NA))
@@ -54,7 +54,7 @@ varKRca <- autofitVariogram(MDLG ~ 1,
 plot(varKRca)
 
 #interpolation model
-KRcamod <- gstat(formula=MDLG~1,
+KRcamod <- gstat(formula=MEDIAN~1,
                  locations=as(calcium.sites,"Spatial"),
                  model=varKRca$var_model,
                  nmax=100,
@@ -69,8 +69,8 @@ KRca_interpolation <- predict(KRcamod, KRgrid10km, debug.level = -1)
 KRca_interpolation_raster <- raster(KRca_interpolation) %>% expm1()
 KRca_interpolation_variance_raster <- raster(KRca_interpolation, layer = "var1.var") 
 
-writeRaster(KRca_interpolation_raster, "rasters/raw/calcium-KR-97648-median-10km-LGT-ZN.tif", overwrite=TRUE)
-writeRaster(KRca_interpolation_variance_raster, "rasters/raw/calcium-KR-97648-median-10km-LGT-ZN.tif", overwrite=TRUE)
+writeRaster(KRca_interpolation_raster, "rasters/raw/calcium-KR-97648-median-10km-ZN.tif", overwrite=TRUE)
+writeRaster(KRca_interpolation_variance_raster, "rasters/raw/calcium-KR-97648-median-10km-ZN.tif", overwrite=TRUE)
 
 
 #multi-thread version (considerably faster, but does not generate kriging variance map)
@@ -86,7 +86,7 @@ writeRaster(KRca_interpolation_variance_raster, "rasters/raw/calcium-KR-97648-me
 #KRca_interpolation_mt_bt <- KRca_interpolation_mt %>% expm1()
 
 #final raster will be identical to version produced using single-thread approach above
-#writeRaster(KRca_interpolation_raster_mt_bt, "rasters/raw/calcium-KR-97648-median-10km-LGT-ZN.tif")
+#writeRaster(KRca_interpolation_raster_mt_bt, "rasters/raw/calcium-KR-97648-median-10km-ZN.tif")
 
 
 

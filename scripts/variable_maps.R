@@ -22,22 +22,22 @@ can <- ne_countries(country = "canada", scale = "large", returnclass = "sf" ) %>
 n.amer <- rbind(us, can)
 
 # load rasters
-calc_raster <- raster("rasters/masked/calcium-KR-97648-median_10km_LT_ZN_masked.tif")
-ph_raster <- raster("rasters/masked/ph-KR-208784-median_10km_UT_ZN_masked.tif")
+calc_raster <- raster("rasters/raw/calcium-KR-97648-median-10km-ZN.tif") %>% mask(n.amer)
+ph_raster <- raster("rasters/raw/ph-KR-208784-median_10km_ZN.tif") %>% mask(n.amer)
 
 #prepare plotting data
 
 calc_plotdata <- calc_raster %>% 
   rasterToPoints() %>% 
   as.data.frame() %>%
-  rename(layer="calcium.KR.97648.median_10km_LT_ZN_masked") %>%
+  rename(layer="calcium.KR.97648.median.10km.ZN") %>%
   mutate(grades = cut(layer,c(0,5.4999,10.4999,15.4999,20.4999,25.4999,30.4999,501),
                        labels=c("0 - 5","6 - 10","11 - 15","16 - 20","21 - 25","26 - 30","> 30"))) 
   
 ph_plotdata <- ph_raster %>% 
   rasterToPoints() %>% 
   as.data.frame() %>%
-  rename(layer="ph.KR.208784.median_10km_UT_ZN_masked") %>%
+  rename(layer="ph.KR.208784.median_10km_ZN") %>%
   mutate(phcat = cut(layer, c(0,5.5,6,6.5,7,7.5,8,8.5,13), 
                       labels = c("<5.5","5-5.5","5.5-6","6.5-7.","7-7.5","7.5-8","8-8.5",">8.5"))) 
 

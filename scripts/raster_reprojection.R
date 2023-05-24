@@ -22,8 +22,8 @@ n.amer <- rbind(us, can)
 
 #load raw rasters
 
-KRcalc <- raster("rasters/raw/calcium-KR-97648-median-10km-LGT-ZN.tif")
-KRph <- raster("rasters/raw/ph-KR-208784-median_10km_UT_ZN.tif")
+KRcalc <- raster("rasters/raw/calcium-KR-97648-median-10km-ZN.tif")
+KRph <- raster("rasters/raw/ph-KR-208784-median_10km_ZN.tif")
 
 #CREATE REPROJECTED VERSIONS (latitude-longitude)
 
@@ -44,7 +44,7 @@ KRcalc_latlong_5m_masked <- mask(KRcalc_latlong_5m, n.amer)
 KRph_latlong_5m_masked <- mask(KRph_latlong_5m, n.amer)
 
 #save the rasters
-writeRaster(KRcalc_latlong_5m_masked, "rasters/masked/calcium-KR-97648-median-10km-LGT-ZN_latlong.tif", overwrite=TRUE)
-writeRaster(KRph_latlong_5m_masked, "rasters/masked/ph-KR-208784-median_10km_UT_ZN_latlong.tif", overwrite=TRUE)
+writeRaster(KRcalc_latlong_5m_masked, "rasters/masked/calcium-KR-97648-median-10km-ZN_latlong.tif", overwrite=TRUE)
+writeRaster(KRph_latlong_5m_masked, "rasters/masked/ph-KR-208784-median_10km_ZN_latlong.tif", overwrite=TRUE)
 
 

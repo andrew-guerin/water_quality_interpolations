@@ -19,11 +19,11 @@ n.amer <- rbind(us, can)
 
 #load raw rasters
 
-KRcalc <- raster("rasters/raw/calcium-KR-97648-median-10km-LGT-ZN.tif")
-KRcalcvar <- raster("rasters/raw/calcium-KR-97648-median-10km-LGT-ZN_variance.tif")
+KRcalc <- raster("rasters/raw/calcium-KR-97648-median-10km-ZN.tif")
+KRcalcvar <- raster("rasters/raw/calcium-KR-97648-median-10km-ZN_variance.tif")
 
-KRph <- raster("rasters/raw/ph-KR-208784-median_10km_UT_ZN.tif")
-KRphvar <- raster("rasters/raw/ph-KR-208784-median_10km_UT_ZN_variance.tif")
+KRph <- raster("rasters/raw/ph-KR-208784-median_10km_ZN.tif")
+KRphvar <- raster("rasters/raw/ph-KR-208784-median_10km_ZN_variance.tif")
 
 #mask rasters
 
@@ -35,11 +35,11 @@ KRphvar_masked <- mask(KRphvar,n.amer)
 
 #save the masked rasters
 
-writeRaster(KRcalc_masked, "rasters/masked/calcium-KR-97648-median_10km_LT_ZN_masked.tif", overwrite=TRUE)
-writeRaster(KRcalcvar_masked, "rasters/masked/calcium-KR-97648-median_10km_LT_ZN_variance_masked.tif", overwrite=TRUE)
+writeRaster(KRcalc_masked, "rasters/masked/calcium-KR-97648-median_10km_ZN_masked.tif", overwrite=TRUE)
+writeRaster(KRcalcvar_masked, "rasters/masked/calcium-KR-97648-median_10km_ZN_variance_masked.tif", overwrite=TRUE)
 
-writeRaster(KRph_masked, "rasters/masked/ph-KR-208784-median_10km_UT_ZN_masked.tif", overwrite=TRUE)
-writeRaster(KRphvar_masked, "rasters/masked/ph-KR-208784-median_10km_UT_ZN_variance_masked.tif", overwrite=TRUE)
+writeRaster(KRph_masked, "rasters/masked/ph-KR-208784-median_10km_ZN_masked.tif", overwrite=TRUE)
+writeRaster(KRphvar_masked, "rasters/masked/ph-KR-208784-median_10km_ZN_variance_masked.tif", overwrite=TRUE)
 
 
 
