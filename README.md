@@ -6,7 +6,7 @@ Rasters and other data are also available from:
 
 All rasters are provided in the North America Albers Equal Area projection (ESRI:102008), at 10 x 10 km resolution.
 Rasters are provided 'unmasked', thus include oceanic areas, and must be masked using country outlines prior to use. Example code for masking the raw rasters is included. For reprojecting the data into other projections (eg. latitude-longitude) it is recommended to perform the reprojection on the unmasked rasters, and then mask the raster using your preferred country outlines in the appropriate projection. Example code is also provided for this operation.
-Rasters were generated using zero-nugget ordinary kriging, calcium data (but not pH data) were log-transformed prior to interpolation.
+Rasters were generated using ordinary kriging, with the nugget set to zero.
 
 The full calcium and pH databases cannot be shared, since these include data from individuals / organisations who did not explicitly agree to open sharing of their data. However 'redacted' databases, including locations for all sites and all shareable data, are provided.
 
@@ -29,7 +29,8 @@ Data
 - Point data for sites with shareable pH and calcium data (.csv)
 
 Code
-- scripts used to generate the calcium and pH interpolations from the corresponding data. 
+- scripts to generate interactive maps showing locations with calcium and pH data used for the interpolations
+- scripts used to generate the calcium and pH interpolations from the corresponding data
 WARNING: the above scripts were written for the full databases, which are not provided, and would need to be modified to run on other datasets 
 - scripts to mask the raw rasters using country outlines from the rnaturalearth package
 - scripts to reproject the rasters into latitude and longitude, followed by masking with country outlines
@@ -38,4 +39,4 @@ WARNING: the above scripts were written for the full databases, which are not pr
 Other documents
 - This readme file
 - a metadata document for the calcium and pH databases
-- a pdf of the associated publication from Scientific Data.
+- pdfs of associated publications
