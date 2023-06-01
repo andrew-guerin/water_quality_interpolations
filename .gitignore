@@ -4,6 +4,8 @@
 *.RData
 *.Ruserdata
 
+*.csv
+
 #list of filetypes / files to ignore, as user can build these using included data and scripts
 *.png
 
