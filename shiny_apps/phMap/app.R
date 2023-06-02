@@ -14,7 +14,6 @@ server <- function(input, output) {
   output$phmap <- renderLeaflet({
     
     leaflet(options = leafletOptions()) %>%
-      #setView(lat = 65, lng = -110, zoom = 2) %>% 
       addTiles() %>%
       addCircleMarkers(data = ph.sites, 
                        lng = ~LONGITUDE, 

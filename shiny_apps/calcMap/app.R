@@ -14,7 +14,6 @@ server <- function(input, output) {
   output$calcmap <- renderLeaflet({
     
     leaflet(options = leafletOptions()) %>%
-      setView(lat = 65, lng = -110, zoom = 2) %>% 
       addTiles() %>%
       addCircleMarkers(data = calcium.sites, 
                        lng = ~LONGITUDE, 
@@ -30,7 +29,7 @@ server <- function(input, output) {
                                       paste("Total records:", NO_RECORDS)
                        ),
                        radius = 2,
-                       color = ~ifelse(SHARE == "YES", "blue", "grey"),
+                       color = ~ifelse(SHARE == "NO", "grey", "blue"),
                        clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = FALSE,
                                                              disableClusteringAtZoom = 9))
     })

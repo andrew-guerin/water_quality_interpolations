@@ -4,7 +4,8 @@
 *.RData
 *.Ruserdata
 
-*.csv
+interpolation_data_calcium_85768_shareable.csv
+interpolation_data_ph_201237_shareable.csv
 
 #list of filetypes / files to ignore, as user can build these using included data and scripts
 *.png
