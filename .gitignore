@@ -4,10 +4,12 @@
 *.RData
 *.Ruserdata
 
+#delete these three lines to enable sharing of the databases
 interpolation_data_calcium_85768_shareable.csv
 interpolation_data_ph_201237_shareable.csv
+calcium_pH_metadata_shareable.xlsx
 
-#list of filetypes / files to ignore, as user can build these using included data and scripts
+#local files to ignore; user can build these using included data and scripts
 *.png
 
 calcium-KR-97648-median_10km_ZN_masked.tif
@@ -18,4 +20,3 @@ ph-KR-208784-median_10km_ZN_variance_masked.tif
 
 calcium-KR-97648-median-10km-ZN_latlong.tif
 ph-KR-208784-median_10km_ZN_latlong.tif
-.Rproj.user
