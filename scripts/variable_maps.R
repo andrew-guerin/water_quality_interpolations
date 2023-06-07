@@ -47,10 +47,10 @@ ph_plotdata <- ph_raster %>%
 plot_calc <- 
   ggplot() +
   geom_tile(data=calc_plotdata,aes(x=x,y=y,fill=grades,colour=grades)) +
-  scale_fill_manual("Calcium, mg/l", 
+  scale_fill_manual(bquote("Calcium, mg L"^-1), 
                     guide = guide_legend(reverse = TRUE),
                     values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027")) +
-  scale_colour_manual("Calcium, mg/l", 
+  scale_colour_manual(bquote("Calcium, mg L"^-1), 
                       guide = guide_legend(reverse = TRUE),
                       values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027")) +
   geom_sf(data=n.amer, fill=NA) +
