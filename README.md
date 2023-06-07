@@ -35,7 +35,7 @@ Code
 WARNING: the above scripts were written for the full databases, which are not provided, and would need to be modified to run on other datasets 
 - scripts to mask the raw rasters using country outlines from the rnaturalearth package
 - scripts to reproject the rasters into latitude and longitude, followed by masking with country outlines
-- scripts to generate map visualisations of the interpolated layers
+- scripts to generate map visualisations of the interpolated layers (Shiny apps)
 
 Other documents
 - This readme file
