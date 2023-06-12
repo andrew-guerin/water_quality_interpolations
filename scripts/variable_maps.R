@@ -31,8 +31,11 @@ calc_plotdata <- calc_raster %>%
   rasterToPoints() %>% 
   as.data.frame() %>%
   rename(layer="calcium.KR.97648.median.10km.ZN") %>%
-  mutate(grades = cut(layer,c(0,5.4999,10.4999,15.4999,20.4999,25.4999,30.4999,501),
-                       labels=c("0 - 5","6 - 10","11 - 15","16 - 20","21 - 25","26 - 30","> 30"))) 
+  #mutate(grades = cut(layer,c(0,5.4999,10.4999,15.4999,20.4999,25.4999,30.4999,501),
+  #                     labels=c("0 - 5","6 - 10","11 - 15","16 - 20","21 - 25","26 - 30","> 30")))  %>%
+  mutate(grades = cut(layer,c(0,5.4999,10.4999,15.4999,20.4999,25.4999,30.4999,35.4999,40.4999,45.4999,50.4999,501),
+                       labels=c("0 - 5","6 - 10","11 - 15","16 - 20","21 - 25","26 - 30","31 - 35","36 - 40","41 - 45","46 - 50","> 50")))
+  
   
 ph_plotdata <- ph_raster %>% 
   rasterToPoints() %>% 
@@ -41,7 +44,6 @@ ph_plotdata <- ph_raster %>%
   mutate(phcat = cut(layer, c(0,5.5,6,6.5,7,7.5,8,8.5,13), 
                       labels = c("<5.5","5-5.5","5.5-6","6.5-7.","7-7.5","7.5-8","8-8.5",">8.5"))) 
 
-
 #calcium plot
 
 plot_calc <- 
@@ -49,10 +51,12 @@ plot_calc <-
   geom_tile(data=calc_plotdata,aes(x=x,y=y,fill=grades,colour=grades)) +
   scale_fill_manual(bquote("Calcium, mg L"^-1), 
                     guide = guide_legend(reverse = TRUE),
-                    values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027")) +
+                    #values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027"),
+                    values = c("#313695","#4575B4","#74ADD1","#ABD9E9","#E0F3F8","#FFFFBF","#FEE090","#FDAE61","#F46D43","#D73027","#A50026")) +
   scale_colour_manual(bquote("Calcium, mg L"^-1), 
                       guide = guide_legend(reverse = TRUE),
-                      values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027")) +
+                      #values = c("#4575B4","#91BFDB","#E0F3F8","#FFFFBF","#FEE090","#FC8D59","#D73027"),
+                      values = c("#313695","#4575B4","#74ADD1","#ABD9E9","#E0F3F8","#FFFFBF","#FEE090","#FDAE61","#F46D43","#D73027","#A50026")) +
   geom_sf(data=n.amer, fill=NA) +
   coord_sf(xlim = c(-4755010, 2995610), ylim = c(-1689950, 4514250), expand = FALSE) +
   theme_map() +
