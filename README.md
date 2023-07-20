@@ -11,6 +11,7 @@ Rasters are provided 'unmasked', thus including oceanic areas, and must be maske
 The full calcium and pH databases used to generate the interpolations cannot be shared, since these include data from individuals / organisations who did not explicitly agree to open sharing of their data. However 'redacted' databases, including locations all sites with shareable data, are provided. To view locations of data with non-shareable (proprietary) data, use the shiny apps provided here or accessible at: 
 
 https://andrew-guerin.shinyapps.io/Calcium_data_map/
+
 https://andrew-guerin.shinyapps.io/pH_data_map/
 
 Raster file names provide detail on data and interpolations used to generate the layers. 
