@@ -8,11 +8,13 @@ All rasters are provided in the North America Albers Equal Area projection (ESRI
 
 Rasters are provided 'unmasked', thus including oceanic areas, and must be masked using country outlines prior to use. Example code for masking the raw rasters is included. For reprojecting the data into other projections (eg. latitude-longitude) it is recommended to perform the reprojection on the unmasked rasters, and then mask the raster using your preferred country outlines in the appropriate projection. Example code is also provided for this operation.
 
-The full calcium and pH databases used to generate the interpolations cannot be shared, since these include data from individuals / organisations who did not explicitly agree to open sharing of their data. However 'redacted' databases, including all shareable data, are provided. To view locations with data (shareable and non-shareable / proprietary), use the shiny apps provided here or accessible at: 
+The full calcium and pH databases used to generate the interpolations cannot be shared, since these include data from individuals / organisations who did not explicitly agree to open sharing of their data. However 'redacted' databases, including all shareable data, are provided. To view locations with data (shareable and non-shareable / proprietary), use the Shiny apps provided here or accessible at: 
 
 https://andrew-guerin.shinyapps.io/Calcium_data_map/
 
 https://andrew-guerin.shinyapps.io/pH_data_map/
+
+Please note that these apps use large amounts of data and make take a few moments to load.
 
 Raster file names provide detail on data and interpolations used to generate the layers. 
 Format: variable-interpolation method-number of data points used-measure interpolated-resolution-nugget settings.
@@ -31,7 +33,7 @@ Data
 - Freshwater calcium concentration and pH rasters (.tif). 
 - Kriging variance rasters for above interpolations (.tif)
 - Point data for sites with shareable pH and calcium data (.csv)
-- a metadata document for the calcium and pH databases (.xlsx)
+- metadata documents for the calcium and pH databases (.xlsx)
 
 Code
 - scripts used to generate the calcium and pH interpolations from the corresponding data
