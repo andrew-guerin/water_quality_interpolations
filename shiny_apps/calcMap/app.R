@@ -10,7 +10,7 @@ ui <- fillPage(
 )
 
 server <- function(input, output) {
-  
+
   output$calcmap <- renderLeaflet({
     
     leaflet(options = leafletOptions()) %>%
@@ -33,7 +33,7 @@ server <- function(input, output) {
                        clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = FALSE,
                                                              disableClusteringAtZoom = 9))
     })
-  
+
 }
 
 

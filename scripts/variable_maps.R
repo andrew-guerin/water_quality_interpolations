@@ -22,8 +22,8 @@ can <- ne_countries(country = "canada", scale = "large", returnclass = "sf" ) %>
 n.amer <- rbind(us, can)
 
 # load rasters
-calc_raster <- raster("rasters/raw/calcium-KR-97648-median-10km-ZN.tif") %>% mask(n.amer)
-ph_raster <- raster("rasters/raw/ph-KR-208784-median_10km_ZN.tif") %>% mask(n.amer)
+calc_raster <- raster("rasters/unmasked/calcium-KR-97648-median-10km-ZN.tif") %>% mask(n.amer)
+ph_raster <- raster("rasters/unmasked/ph-KR-208784-median_10km_ZN.tif") %>% mask(n.amer)
 
 #prepare plotting data
 

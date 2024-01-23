@@ -22,8 +22,8 @@ n.amer <- rbind(us, can)
 
 #load raw rasters
 
-KRcalc <- raster("rasters/raw/calcium-KR-97648-median-10km-ZN.tif")
-KRph <- raster("rasters/raw/ph-KR-208784-median_10km_ZN.tif")
+KRcalc <- raster("rasters/unmasked/calcium-KR-97648-median-10km-ZN.tif")
+KRph <- raster("rasters/unmasked/ph-KR-208784-median_10km_ZN.tif")
 
 #CREATE REPROJECTED VERSIONS (latitude-longitude)
 

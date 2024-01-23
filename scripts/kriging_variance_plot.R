@@ -23,8 +23,8 @@ n.amer <- rbind(us, can)
 
 #open raster files and mask using US-Canada outline
 
-calc_var <- raster("rasters/raw/calcium-KR-97648-median-10km-ZN_variance.tif") %>% mask(n.amer)
-ph_var <- raster("rasters/raw/ph-KR-208784-median_10km_ZN_variance.tif") %>% mask(n.amer)
+calc_var <- raster("rasters/unmasked/calcium-KR-97648-median-10km-ZN_variance.tif") %>% mask(n.amer)
+ph_var <- raster("rasters/unmasked/ph-KR-208784-median_10km_ZN_variance.tif") %>% mask(n.amer)
 
 #prep data for plotting
 

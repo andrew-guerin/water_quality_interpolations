@@ -1,6 +1,7 @@
-# this script runs the interpolation for calcium concentrations
+# this script runs the interpolation for pH
 # it is the 'single thread' version of the process. Considerable speed gains are possible using multi-thread version (provided at the end, as hashed out code)
-# this is for the 'best' interpolation, using zero-nugget interpolation based on log-transformed data
+# this is for the 'best' interpolation, using zero-nugget interpolation
+# this code is intended to be used with the full pH database, which contains records which are not shareable. It would need to be adjusted for the reduced dataset 
 
 library(tidyverse)
 library(sf)
@@ -13,15 +14,15 @@ if(!file.exists("rasters")){
   dir.create("rasters")
 }
 
-if(!file.exists("rasters/raw")){
-  dir.create("rasters/raw")
+if(!file.exists("rasters/unmasked")){
+  dir.create("rasters/unmasked")
 }
 
 #coordinate reference systems 
 crs1 <- 4326 
 crs2 <- "ESRI:102008"
 
-#import calcium data, convert to spatial data and project to North America Albers Equal Area Conic
+#import pH data, convert to spatial data and project to North America Albers Equal Area Conic
 ph.sites<- read.csv("data/interpolation_data_ph_208784.csv") %>%
   st_as_sf(coords = c("LONGITUDE", "LATITUDE"), crs = crs1, agr = "constant")  %>%
   st_transform(crs = crs2) 
@@ -71,12 +72,11 @@ KRgrid10km <- as(grid10km, "SpatialGrid")
 KRph_interpolation <- predict(KRphmod, KRgrid10km, debug.level = -1)
 
 #convert output to rasters and save 
-#note that the main calcium raster is back-transformed to measurement scale
-KRph_interpolation_raster <- raster(KRph_interpolation) %>% expm1()
+KRph_interpolation_raster <- raster(KRph_interpolation) 
 KRph_interpolation_variance_raster <- raster(KRph_interpolation, layer = "var1.var") 
 
-writeRaster(KRph_interpolation_raster, "rasters/raw/ph-KR-208784-median_10km_UT_ZN.tif", overwrite=TRUE)
-writeRaster(KRph_interpolation_variance_raster, "rasters/raw/ph-KR-208784-median_10km_UT_ZN_variance.tif", overwrite=TRUE)
+writeRaster(KRph_interpolation_raster, "rasters/unmasked/ph-KR-208784-median_10km_UT_ZN.tif", overwrite=TRUE)
+writeRaster(KRph_interpolation_variance_raster, "rasters/unmasked/ph-KR-208784-median_10km_UT_ZN_variance.tif", overwrite=TRUE)
 
 
 #multi-thread version (considerably faster, but does not generate kriging variance map)
@@ -89,7 +89,7 @@ writeRaster(KRph_interpolation_variance_raster, "rasters/raw/ph-KR-208784-median
 #KRph_interpolation_mt <- clusterR(grid10km, interpolate, args=list(KRphmod)) 
 
 #final raster will be identical to version produced using single-thread approach above
-#writeRaster(KRph_interpolation_raster_mt, "rasters/raw/ph-KR-208784-median_10km_UT_ZN.tif")
+#writeRaster(KRph_interpolation_raster_mt, "rasters/unmasked/ph-KR-208784-median_10km_UT_ZN.tif")
 
 
 

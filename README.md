@@ -2,7 +2,7 @@
 
 This repository contains rasters of freshwater calcium concentration and pH data layers for Canada and the continental USA, along with some associated scripts and data. 
 
-Rasters and other data will also be made available via datadryad (link will be added when available). 
+A more comprehensive set of rasters and underlying data will also be made available via datadryad (link will be added when available). 
 
 All rasters are provided in the North America Albers Equal Area projection (ESRI:102008), at 10 x 10 km resolution. Rasters were generated using ordinary kriging, with the nugget set to zero.
 
@@ -33,7 +33,7 @@ Data
 - Freshwater calcium concentration and pH rasters (.tif). 
 - Kriging variance rasters for above interpolations (.tif)
 - Point data for sites with shareable pH and calcium data (.csv)
-- metadata documents for the calcium and pH databases (.xlsx)
+- metadata documents for the calcium and pH databases (.csv)
 
 Code
 - scripts used to generate the calcium and pH interpolations from the corresponding data
