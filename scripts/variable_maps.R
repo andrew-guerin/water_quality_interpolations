@@ -1,6 +1,4 @@
 
-#run the raster_masking script first to get data just for the land area.
-
 library(tidyverse)
 library(sf)
 library(rnaturalearth)
@@ -21,7 +19,7 @@ us <- ne_countries(country = "united states of america", scale = "large", return
 can <- ne_countries(country = "canada", scale = "large", returnclass = "sf" ) %>% st_transform(crs = crs2)
 n.amer <- rbind(us, can)
 
-# load rasters
+# load rasters and mask with country outlines
 calc_raster <- raster("rasters/unmasked/calcium-KR-97648-median-10km-ZN.tif") %>% mask(n.amer)
 ph_raster <- raster("rasters/unmasked/ph-KR-208784-median_10km_ZN.tif") %>% mask(n.amer)
 

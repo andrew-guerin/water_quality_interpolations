@@ -33,7 +33,7 @@ Data
 - Freshwater calcium concentration and pH rasters (.tif). 
 - Kriging variance rasters for above interpolations (.tif)
 - Point data for sites with shareable pH and calcium data (.csv)
-- metadata documents for the calcium and pH databases (.csv)
+- metadata for the calcium and pH databases (.xlsx)
 
 Code
 - scripts used to generate the calcium and pH interpolations from the corresponding data
