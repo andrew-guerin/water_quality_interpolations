@@ -1,3 +1,6 @@
+
+#PLEASE NOTE THAT GIVEN THE LARGE AMOUNT OF DATA, THE GENERATED MAP MAY TAKE A FEW MOMENTS TO LOAD
+
 library(shiny)
 library(leaflet)
 
@@ -19,14 +22,14 @@ server <- function(input, output) {
                        lng = ~LONGITUDE, 
                        lat = ~LATITUDE,
                        popup = ~paste(sep = "<br/>",
-                                      paste("Site: ", SITE_ID),
                                       paste("Latitude: ", LATITUDE),
                                       paste("Longitude: ", LONGITUDE),
                                       paste("Median: ",MEDIAN),
                                       paste("Minimum: ",MIN.DTAV),
                                       paste("Maximum: ",MAX.DTAV),
                                       paste("Dates sampled: ", NO_DATES),
-                                      paste("Total records:", NO_RECORDS)
+                                      paste("Total records:", NO_RECORDS),
+                                      paste("Data Sources:", SOURCE_IDS)
                        ),
                        radius = 2,
                        color = ~ifelse(SHARE == "NO", "grey", "red"),

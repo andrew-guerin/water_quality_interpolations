@@ -5,8 +5,8 @@
 *.Ruserdata
 
 #delete these three lines to enable sharing of the databases
-interpolation_data_calcium_85768_shareable.csv
-interpolation_data_ph_201237_shareable.csv
+interpolation_data_calcium_85747_shareable.csv
+interpolation_data_ph_201183_shareable.csv
 calcium_pH_metadata_shareable.xlsx
 
 #local files to ignore; user can build these using included data and scripts
