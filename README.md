@@ -1,3 +1,5 @@
+<a href="https://zenodo.org/doi/10.5281/zenodo.10573970"><img src="https://zenodo.org/badge/635940186.svg" alt="DOI"></a>
+
 # water_quality_interpolations
 
 This repository contains rasters of freshwater calcium concentration and pH data layers for Canada and the continental USA, along with some associated scripts and data. 
