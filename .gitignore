@@ -6,6 +6,7 @@
 
 #local files to ignore; user can build these using included data and scripts
 *.png
+*.tif
 
 calcium-KR-97648-median_10km_ZN_masked.tif
 calcium-KR-97648-median_10km_ZN_variance_masked.tif

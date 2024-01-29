@@ -74,6 +74,19 @@ ggsave(
   limitsize = TRUE,
   bg = "white") 
 
+ggsave(
+  filename = "figures/calcium_map.tif",
+  plot = plot_calc,
+  device = "tiff",
+  path = NULL,
+  scale = 0.5,
+  width = 40,
+  height = 30,
+  units = "cm",
+  dpi = 600,
+  limitsize = TRUE,
+  bg = "white") 
+
 
 #pH plot 
 
@@ -120,4 +133,16 @@ ggsave(
   limitsize = TRUE,
   bg = "white") 
 
+ggsave(
+  filename = "figures/ph_map.tif",
+  plot = plot_ph,
+  device = "tiff",
+  path = NULL,
+  scale = 0.5,
+  width = 40,
+  height = 30,
+  units = "cm",
+  dpi = 600,
+  limitsize = TRUE,
+  bg = "white") 
 

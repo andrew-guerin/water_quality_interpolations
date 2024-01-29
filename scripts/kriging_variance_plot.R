@@ -83,4 +83,16 @@ ggsave(
   limitsize = TRUE,
   bg = "white")  
 
-  
+ggsave(
+  filename = "figures/kriging_variance_plots.tif",
+  plot = var_plots,
+  device = "tiff",
+  path = NULL,
+  scale = 0.5,
+  width = 30,
+  height = 12,
+  units = "cm",
+  dpi = 1200,
+  limitsize = TRUE,
+  bg = "white")  
+
